@@ -4,8 +4,15 @@ import java.util.Comparator;
 import java.util.ArrayList;
 
 public class UserDatas {
-    private static ArrayList<User> users = null;//用户信息
-    //用二分查找
+    /***
+     * 用户信息
+     */
+    private static ArrayList<User> users = null;
+    /**
+     * 用二分查找
+     * @param mobile 手机号
+     * @return index 目标指针
+     */
     public int findUser(String mobile){
         if(users==null) return -1;
         if(mobile==null) return -1;
@@ -79,4 +86,7 @@ public class UserDatas {
     public static void clear(){
         users=null;
     }
+    /***
+     * 
+     */
 }
