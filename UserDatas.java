@@ -40,4 +40,43 @@ public class UserDatas {
             return binarySearch(stat, index, key);
         }
     }
+    /***
+     * 新增一个用户
+     * @param user 用户类对象
+     */
+    public void addUser(User user){
+        users.add(user);
+    }
+    /***
+     * 修改users中一个用户信息
+     * @param user 用户类对象
+     */
+    public void modifyUser(User user){
+        int index = findUser(user.getmobile());
+        users.set(index,user);//索引,数据
+    }
+    /***
+     * users对象数据保存到文件
+     */
+    public void saveUsers(){
+        UserFile file = new  UserFile();
+        file.save(users);
+    }
+    /***
+     * 从文件读取所有用户信息到users对象
+     * @return ArrayList<User> users
+     */
+    public static ArrayList<User> getUsers(){
+        if(users == null){
+            UserFile file = new UserFile();
+            users = file.acquire();
+        }
+        return users;
+    }
+    /***
+     * 清除数据
+     */
+    public static void clear(){
+        users=null;
+    }
 }
