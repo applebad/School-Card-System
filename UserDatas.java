@@ -86,7 +86,4 @@ public class UserDatas {
     public static void clear(){
         users=null;
     }
-    /***
-     * 
-     */
 }

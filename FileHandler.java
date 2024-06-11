@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -7,15 +8,18 @@ public class FileHandler {
     /***
      * 数据项之间的分隔符
      */
-    protected static String separetor = "\t";
+    protected static String separator = "\t";
+
     /***
      * 数据保存的文件名
      */
     protected String filename = null;
+
     /***
      * 每条记录数据以字符串的形式保存
      */
     protected ArrayList<String> datas;
+
     /***
      * 用于格式化时间
      */
@@ -24,6 +28,7 @@ public class FileHandler {
         this.filename = filename;
         this.datas = new ArrayList<String>();
     }
+    
     /***
      * 从文件中读取数据
      */
@@ -36,7 +41,7 @@ public class FileHandler {
             reader = new BufferedReader(new FileReader(filename));
             String line = null;
             while((line = reader.readLine()) != null){
-                datas.add(line);
+                datas.add(line);//每条记录保存为一个字符串对象
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -49,5 +54,40 @@ public class FileHandler {
                 }
             }
         }
+    }
+
+    /***
+     * 将数据保存到文件中
+     */
+    public void write(){
+        //内容
+        String content = listToString();
+        if(content == null) return;
+        FileWriter writer = null;
+        try{
+            writer = new FileWriter(filename);
+            writer.write(content);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try{
+                writer.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    /***
+     * datas对象->字符串
+     * @return content:字符串(转换后)
+     */
+    public String listToString(){
+        if(datas == null) return null;
+        String content = "";
+        for(int i = 0;i < datas.size();i++){
+            content += datas.get(i);
+        }
+        return content;
     }
 }
