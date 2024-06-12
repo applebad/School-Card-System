@@ -27,6 +27,7 @@ public class UserDatas {
      */
     private void sortedUsers(){//
         // Collections.sort(users,Comparator.comparingInt((User::getmobileToInt)));
+        // TODO Auto-generated method stub
         users.sort(Comparator.comparingInt(User::getmobileToInt));
     }
     /***
@@ -85,5 +86,13 @@ public class UserDatas {
      */
     public static void clear(){
         users=null;
+    }
+    /***
+     * 删除用户
+     * @param user 用户
+     */
+    public void removeUser(User user) {
+        int index = findUser(user.mobile);
+        users.remove(index);
     }
 }
