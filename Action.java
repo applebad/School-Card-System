@@ -17,6 +17,7 @@ public class Action {
                 usersService.getDatas();//获取数据
                 boolean pass = usersService.login();//登录
                 if(!pass) continue;
+                @SuppressWarnings("static-access")
                 User user = usersService.users.get(usersService.getCurUserIndex());
                 switch (user.role) {
                     case 0:

@@ -1,4 +1,6 @@
 import java.util.Comparator;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 /***
  * test:
@@ -7,7 +9,8 @@ import java.util.ArrayList;
 public class test {
     public static void main(String[] args) {
         System.out.println("test");
-        BinarySearchTest();
+        // BinarySearchTest();
+        Fr();
     }
 
     /***
@@ -29,5 +32,21 @@ public class test {
             System.out.println(users.get(i).mobile);
         }
         return;
+    }
+    public static void Fr(){
+        FileWriter fw = null;
+        String content = ".\\create\\ddd.txt";
+        try {
+            fw = new FileWriter(content);
+            fw.write("test");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try{
+            fw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

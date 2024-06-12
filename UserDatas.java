@@ -4,10 +4,12 @@ import java.util.Comparator;
 import java.util.ArrayList;
 
 public class UserDatas {
+
     /***
      * 用户信息
      */
     private static ArrayList<User> users = null;
+
     /**
      * 用二分查找
      * @param mobile 手机号
@@ -27,7 +29,6 @@ public class UserDatas {
      */
     private void sortedUsers(){//
         // Collections.sort(users,Comparator.comparingInt((User::getmobileToInt)));
-        // TODO Auto-generated method stub
         users.sort(Comparator.comparingInt(User::getmobileToInt));
     }
     /***

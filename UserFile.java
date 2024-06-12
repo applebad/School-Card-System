@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class UserFile extends FileHandler{
 
-    /***
+    /**
      * 用户文件数据的读取与保存
      */
     public UserFile(){
-        super("users.dat");
+        super("users.dat","data"+FileSeparator+"users");
     }
-    
-    /***
+
+    /**
      * 读取文件数据保存到users中
      * @return users
      */
@@ -25,7 +25,7 @@ public class UserFile extends FileHandler{
         return users;
     }
 
-    /***
+    /**
      * 将users中数据写入文件
      * @param users 用户集
      */
@@ -38,7 +38,7 @@ public class UserFile extends FileHandler{
         write();
     }
 
-    /***
+    /**
      * 将读取的字符串数据转化成用户对象
      * @param line 数据行
      * @return
@@ -56,7 +56,7 @@ public class UserFile extends FileHandler{
         return user;
     }
 
-    /***
+    /**
      * 将用户对象转化成字符串
      * @param user 用户对象
      * @return 用户->字符串

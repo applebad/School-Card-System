@@ -4,15 +4,14 @@ public class CardDatas {
     /**
      * 卡数据
      */
-    ArrayList<Card> cards = new ArrayList<Card>();
+    private static ArrayList<Card> cards = null;
 
     /***
      * 删除卡号
      * @param cno 卡号
      */
     public void removeCard(String cno) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeCard'");
+        
     }
 
     public void saveUsers() {

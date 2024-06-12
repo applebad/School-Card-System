@@ -5,27 +5,34 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class FileHandler {
-    /***
+    /**
      * 数据项之间的分隔符
      */
     protected static String separator = "\t";
-
-    /***
+    /**
+     * 文件路径分隔符
+     */
+    protected static String FileSeparator = "\\";
+    /**
      * 数据保存的文件名
      */
     protected String filename = null;
-
-    /***
+    /**
+     * 数据保存的路径
+     */
+    protected String fileContent = null;
+    /**
      * 每条记录数据以字符串的形式保存
      */
     protected ArrayList<String> datas;
 
-    /***
+    /**
      * 用于格式化时间
      */
     protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public FileHandler(String filename){
+    public FileHandler(String filename, String fileContent){
         this.filename = filename;
+        this.fileContent = fileContent;
         this.datas = new ArrayList<String>();
     }
     
@@ -65,7 +72,7 @@ public class FileHandler {
         if(content == null) return;
         FileWriter writer = null;
         try{
-            writer = new FileWriter(filename);
+            writer = new FileWriter(fileContent+FileSeparator+filename);
             writer.write(content);
         }catch(Exception e){
             e.printStackTrace();
