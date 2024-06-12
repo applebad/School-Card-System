@@ -15,6 +15,10 @@ public class UserService {
      * 标记业务操作是否更改数据 false:未更改 true:更改 | default = false
      */
     public boolean change = false;
+    /***
+     * 是否删除卡(外加交易记录)
+     */
+    public boolean delete = false;
     private Scanner sc = new Scanner(System.in);
     protected UserDatas userDatas = new UserDatas();
     protected CardDatas cardDatas = new CardDatas();
@@ -118,5 +122,4 @@ public class UserService {
      * 身份不一样操作不同 逻辑在子类中实现
      */
     public void saveDatas(){}
-
 }
