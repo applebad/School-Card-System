@@ -85,11 +85,11 @@ public class UserService {
                     System.out.println("非法的输入!");
                     return false;
                 }
+            }else{
+                break;
             }
         }
-        @SuppressWarnings("todo")
-        // user.password = newPwd; //错误
-        user.changePwd(newPwd);
+        user.password = newPwd;
         users.set(curUserIndex,user);
         System.out.println("密码修改成功!");
         change = true;//数据更改了
