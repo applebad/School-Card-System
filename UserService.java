@@ -1,3 +1,4 @@
+// package School-Card-System;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -87,10 +88,36 @@ public class UserService {
                 }
             }
         }
-        user.password = newPwd;
+        @SuppressWarnings("todo")
+        // user.password = newPwd; //错误
+        user.changePwd(newPwd);
         users.set(curUserIndex,user);
         System.out.println("密码修改成功!");
         change = true;//数据更改了
         return true;
     }
+    /***
+     * 用户注销
+     */
+    public void logout(){
+        saveDatas();//保存数据
+        //清空全局变量/对象数据
+        UserDatas.clear();
+        CardDatas.clear();
+        TransactionDatas.clear();
+        curUserIndex = -1;
+    }
+    /***
+     * 用户退出
+     */
+    public void exit(){
+        saveDatas();
+        System.exit(0);
+    }
+    /***
+     * 保存数据
+     * 身份不一样操作不同 逻辑在子类中实现
+     */
+    public void saveDatas(){}
+
 }

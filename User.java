@@ -18,4 +18,7 @@ public class User{
     public String getmobile(){
         return mobile;
     }
+    public void changePwd(String newPwd){
+        this.password = newPwd;
+    }
 }
