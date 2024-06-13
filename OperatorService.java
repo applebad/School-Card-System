@@ -34,6 +34,7 @@ public class OperatorService extends UserService{
 
         Card newCard = new Card(cno);
         
+        CardDatas.addCard(newCard);
     }
 
     /**

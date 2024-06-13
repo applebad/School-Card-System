@@ -36,6 +36,13 @@ public class CardDatas {
         }
         return cards;
     }
+    /**
+     * 按序插入
+     */
+    public static void addCard(Card card){
+        cards.add(card);
+        sortCards();
+    }
 
     public static void clear() {
         cards = null;
@@ -49,6 +56,7 @@ public class CardDatas {
      * @return
      */
     protected int getCardIndex(int stat, int end, String cno){
+    protected static int getCardIndex(int stat, int end, String cno){
         int mid = (stat + end) / 2;
         if(cno.equals(cards.get(mid).cno)){
             return mid;
@@ -58,11 +66,15 @@ public class CardDatas {
             return getCardIndex(stat, mid-1, cno);
         }
     }
+    protected static int getCardIndex(String cno){
+        return getCardIndex(0, cards.size(), cno);
+    }
 
     /**
      * 冒泡排序 key = 卡号
      */
     protected void sortCards(){
+    protected static void sortCards(){
         boolean flag = true;
         for(int i = 0; i < cards.size(); i++){
             for(int j = 0; j < cards.size() - i; i++){
