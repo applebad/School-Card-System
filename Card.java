@@ -11,7 +11,7 @@ public class Card {
      * 余额
      */
     float balance;
-
+    
     public Card(){}
 
     public Card(String cno){
