@@ -6,7 +6,6 @@ public class Card {
     /**
      * '卡'状态
      */
-    String cardCondition;
     boolean cardCondition;
     /**
      * 余额
