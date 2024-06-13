@@ -19,10 +19,6 @@ public class UserService {
      * 是否删除卡(外加交易记录)
      */
     public boolean delete = false;
-<<<<<<< HEAD
-    private Scanner sc = new Scanner(System.in);
-=======
->>>>>>> 96b7fc89c380f88e17d34bcd494a2fd3dc947cbb
     protected Scanner sc = new Scanner(System.in);
     /**
      * 数据集
@@ -91,11 +87,9 @@ public class UserService {
                 System.out.println("两次密码输入不一致,修改失败");
                 System.out.println("是否重新输入?(y/n)");
                 String ans = sc.next();
-                if(ans.equals('n')){
                 if(ans.equals("n")){
                     return false;
                 }
-                else if(ans.equals('y')){}
                 else if(ans.equals("y")){}
                 else{
                     System.out.println("非法的输入!");

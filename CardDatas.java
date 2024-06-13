@@ -55,7 +55,6 @@ public class CardDatas {
      * @param cno
      * @return
      */
-    protected int getCardIndex(int stat, int end, String cno){
     protected static int getCardIndex(int stat, int end, String cno){
         int mid = (stat + end) / 2;
         if(cno.equals(cards.get(mid).cno)){
@@ -73,7 +72,6 @@ public class CardDatas {
     /**
      * 冒泡排序 key = 卡号
      */
-    protected void sortCards(){
     protected static void sortCards(){
         boolean flag = true;
         for(int i = 0; i < cards.size(); i++){
