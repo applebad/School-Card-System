@@ -5,9 +5,10 @@ public class CustomerService extends UserService{
     /**
      * 卡状态判断
     */
+    @SuppressWarnings("static-access")
     public boolean getCardCondition(){
-        return cards.get(cardDatas.getCardIndex(curUserIndex, curUserIndex, users.get(curUserIndex).cno)).cardCondition;
-    } 
+        return cards.get(cardDatas.getCardIndex(users.get(curUserIndex).cno)).cardCondition;
+    }
 
     /**
      * 充钱
