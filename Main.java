@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        //初始化 只执行一次
+        //初始化 只执行一次 创建管理员
         init();
         Action action = new Action();
         action.start();

@@ -1,11 +1,5 @@
-public class CustomerService {
-    /**
-     * 改密码
-     */
-    public void modifyPassword() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modifyPassword'");
-    }
+public class CustomerService extends UserService{
+    
     /**
      * 充钱
      */

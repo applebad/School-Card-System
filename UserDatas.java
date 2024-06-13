@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class UserDatas {
 
-    /***
+    /**
      * 用户信息
      */
     private static ArrayList<User> users = null;
@@ -23,7 +23,7 @@ public class UserDatas {
         binarySearch(0,users.size(),mobile);//二分查找
         return index;
     }
-    /***
+    /**
      * 排序算法
      * 根据mobile进行一次排序(升序)
      */
@@ -31,7 +31,7 @@ public class UserDatas {
         // Collections.sort(users,Comparator.comparingInt((User::getmobileToInt)));
         users.sort(Comparator.comparingInt(User::getmobileToInt));
     }
-    /***
+    /**
      * 二分查找算法
      * @param stat 起始指针
      * @param end 结束指针
@@ -49,14 +49,14 @@ public class UserDatas {
             return binarySearch(stat, index, key);
         }
     }
-    /***
+    /**
      * 新增一个用户
      * @param user 用户类对象
      */
     public void addUser(User user){
         users.add(user);
     }
-    /***
+    /**
      * 修改users中一个用户信息
      * @param user 用户类对象
      */
@@ -64,14 +64,14 @@ public class UserDatas {
         int index = findUser(user.getmobile());
         users.set(index,user);//索引,数据
     }
-    /***
+    /**
      * users对象数据保存到文件
      */
     public void saveUsers(){
-        UserFile file = new  UserFile();
+        UserFile file = new UserFile();
         file.save(users);
     }
-    /***
+    /**
      * 从文件读取所有用户信息到users对象
      * @return ArrayList<User> users
      */

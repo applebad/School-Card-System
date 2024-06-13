@@ -7,30 +7,34 @@ public class UserService {
     public static ArrayList<User> users = null;
     public static ArrayList<Card> cards = null;
     public static ArrayList<Transaction> transactions = null;
-    /***
+    /**
      * 当前操作用户索引 | default = -1
      */
     public static int curUserIndex = -1;
-    /***
+    /**
      * 标记业务操作是否更改数据 false:未更改 true:更改 | default = false
      */
     public boolean change = false;
-    /***
+    /**
      * 是否删除卡(外加交易记录)
      */
     public boolean delete = false;
     private Scanner sc = new Scanner(System.in);
+    /**
+     * 数据集
+     */
     protected UserDatas userDatas = new UserDatas();
     protected CardDatas cardDatas = new CardDatas();
     protected TransactionDatas transDatas = new TransactionDatas();
-    /***
+    /**
      * 用于格式化金额
      */
     public DecimalFormat df = new DecimalFormat("#.00");
-    /***
+    /**
      * 用于格式化时间
      */
     public SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     public void getDatas(){
         users = UserDatas.getUsers();
         cards = CardDatas.getCards();
@@ -39,7 +43,7 @@ public class UserService {
     public int getCurUserIndex(){
         return curUserIndex;
     }
-    /***
+    /**
      * 用户登录
      * @return 是否成功登录
      */
@@ -61,7 +65,9 @@ public class UserService {
         }
         return true;
     }
-    /*** */
+    /**
+     * 改密码
+     */
     public boolean modifyPassword(){
         User user = users.get(curUserIndex);
         System.out.println("输入原密码:");

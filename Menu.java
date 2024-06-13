@@ -37,7 +37,7 @@ public class Menu {
         System.out.println("\t2. 充值");
         System.out.println("\t3. 消费");
         System.out.println("\t4. 我的校园卡");
-        System.out.println("\t5. 查看交易记录");
+        System.out.println("\t5. 查看交易记录");//添加功能:根据日期查找
         System.out.println("\t6. 注销");
         System.out.println("\t7. 退出");
         System.out.println("\n\t 请选择您的操作：");

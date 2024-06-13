@@ -97,7 +97,7 @@ public class Action {
                     operatorService.frozenCard();
                     break;
                 case 5:
-                    operatorService.createCard();
+                    operatorService.activateCard();
                     break;
                 case 6:
                     operatorService.logout();
