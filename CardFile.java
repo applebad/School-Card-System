@@ -27,7 +27,7 @@ public class CardFile extends FileHandler {
     private Card dataFromString(String string) {
         Card card = null;
         String[] item = string.split(separator);
-        card = new Card(item[0],item[1]);
+        card = new Card(item[0],Boolean.parseBoolean(item[1]));
         return card;
     }
 }

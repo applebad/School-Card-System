@@ -1,7 +1,5 @@
-import java.util.Scanner;
-
 public class OperatorService extends UserService{
-    Scanner sc = new Scanner(System.in);
+    
     /**
      * 显示所有卡信息
      */
@@ -31,9 +29,8 @@ public class OperatorService extends UserService{
             System.out.println("退出开卡业务!");
             return;
         }
-
         Card newCard = new Card(cno);
-        
+        CardDatas.addCard(newCard);
     }
 
     /**

@@ -45,6 +45,10 @@ public class ManagerService extends UserService{
         while(true){
             System.out.println("手机号(11位):");
             mobile = sc.next();
+            if(mobile.length()!=11) {
+                System.out.println("手机号位数错误");
+                continue;
+            }
             index = userDatas.findUser(mobile);
             if(index >= 0){
                 break;
