@@ -1,9 +1,23 @@
 public class CustomerService extends UserService{
     
+   
+
+    /**
+     * 卡状态判断
+    */
+    public boolean getCardCondition(){
+        return cards.get(cardDatas.getCardIndex(curUserIndex, curUserIndex, users.get(curUserIndex).cno)).cardCondition;
+    } 
+
     /**
      * 充钱
      */
     public void recharge() {
+        
+        
+        System.out.println("输入充值金额：");
+        float balance = sc.nextFloat();
+        
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'recharge'");
     }

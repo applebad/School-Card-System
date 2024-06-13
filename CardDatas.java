@@ -18,6 +18,9 @@ public class CardDatas {
         return true;
     }
 
+    /**
+     *  cards对象数据保存到文件
+    */
     public void saveUsers() {
         // TODO Auto-generated method stub
         

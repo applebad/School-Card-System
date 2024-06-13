@@ -20,6 +20,7 @@ public class UserService {
      */
     public boolean delete = false;
     private Scanner sc = new Scanner(System.in);
+    protected Scanner sc = new Scanner(System.in);
     /**
      * 数据集
      */

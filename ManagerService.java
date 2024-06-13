@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ManagerService extends UserService{
     //删除用户需要同时删除用户的卡号和交易记录,需要单独标记
     public Scanner sc = new Scanner(System.in);
+    
     /***
      * 新增用户
      */
