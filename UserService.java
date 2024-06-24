@@ -1,12 +1,13 @@
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class UserService {
     public static ArrayList<User> users = null;
     public static ArrayList<Card> cards = null;
-    public static ArrayList<Transaction> transactions = null;
+    public static Map<String, ArrayList<Transaction>> transactions = null;
     /**
      * 当前操作用户索引 | default = -1
      */
@@ -38,7 +39,7 @@ public class UserService {
     public void getDatas(){
         users = UserDatas.getUsers();
         cards = CardDatas.getCards();
-        transactions = TransactionDatas.getTransactions();
+        transactions = TransactionDatas.getTransactions();//图
     }
     public int getCurUserIndex(){
         return curUserIndex;

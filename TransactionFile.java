@@ -61,7 +61,8 @@ public class TransactionFile extends FileHandler{
 
     private String dataToString(Transaction transaction) {
         String data = "";
-
+        if(transaction!=null)
+            data = sdf.format(transaction.transTime)+separator+transaction.cno+separator+df.format(transaction.balance)+"\n";
         return data;
     }
 }

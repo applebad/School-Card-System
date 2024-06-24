@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class TransactionDatas {
@@ -23,9 +25,9 @@ public class TransactionDatas {
      * 获取交易记录
      * @return
      */
-    public static ArrayList<Transaction> getTransactions() {
+    public static Map<String,ArrayList<Transaction>> getTransactions() {
         TransactionFiles transactionFiles = new TransactionFiles();
-        
+        return transactionFiles.transactionsMap;
     }
     /**
      * 清空交易记录

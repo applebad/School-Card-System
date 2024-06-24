@@ -87,7 +87,7 @@ public class CustomerService extends UserService{
     /**
      * 显示卡消费记录
      */
-    public void showTransaction() {
+    public void showTransaction() {//TODO
         System.out.println("消费时间  | 消费卡号 | 金额变动");
         for(Transaction trans: transactions){
             System.out.println(trans.transTime+" | "+trans.cno+" | "+trans.balance);
