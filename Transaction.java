@@ -1,17 +1,16 @@
-// import java.sql.Date;
-import java.util.ArrayList;
+import java.sql.Date;
 
 public class Transaction {
-    /***
-     * 交易记录 对应一张卡
+    /**
+     * 消费日期 时间
      */
-    ArrayList<String> transaction;
-    // /**
-    //  * 消费日期 时间
-    //  */
-    // Date transTime;
+    Date transTime;
     /**
      * 对应卡号
      */
     String cno;
+    /**
+     * 变动金额
+     */
+    float balance;
 }

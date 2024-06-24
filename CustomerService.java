@@ -49,6 +49,7 @@ public class CustomerService extends UserService{
                     float consumemoney = sc.nextFloat();
                     xcard.balance -= consumemoney;
                     System.out.println("扣费成功");
+                    //TODO
                     break;
                 }
                 catch(Exception e){
