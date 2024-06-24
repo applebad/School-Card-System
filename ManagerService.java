@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /***
@@ -6,7 +7,7 @@ import java.util.Scanner;
 public class ManagerService extends UserService{
     //删除用户需要同时删除用户的卡号和交易记录,需要单独标记
     public Scanner sc = new Scanner(System.in);
-    
+    private ArrayList<String> removeCno = new ArrayList<String>();
     /***
      * 新增用户
      */
@@ -70,7 +71,7 @@ public class ManagerService extends UserService{
         //删除用户时同时删除对应卡号和记录
         if(!user.cno.isEmpty()){
             cardDatas.removeCard(user.cno);
-            transDatas.removeTransactionByCno(user.cno);
+            removeCno.add(user.cno);
             delete = true;//删除用户的卡号和交易记录
         }
     }
@@ -107,6 +108,7 @@ public class ManagerService extends UserService{
         if(ans.equals("y")){
             userDatas.saveUsers();
             if(delete){//删除用户,需要删除卡和交易记录
+                transDatas.removeTransactionByCno(removeCno);
                 cardDatas.saveUsers();//保存卡号数据
                 transDatas.saveTransaction();//保存交易记录
             }

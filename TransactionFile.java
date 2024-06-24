@@ -46,4 +46,22 @@ public class TransactionFile extends FileHandler{
         return acquire();
     }
     
+    /**
+     * 将数据写入文件
+     * @param transactions 消费记录集
+     */
+    public void save(ArrayList<Transaction> transactions){
+        if(transactions.isEmpty()) return;
+        datas.clear();
+        for(int i = 0; i < transactions.size(); i++){
+            datas.add(dataToString(transactions.get(i)));
+        }
+        write();
+    }
+
+    private String dataToString(Transaction transaction) {
+        String data = "";
+
+        return data;
+    }
 }

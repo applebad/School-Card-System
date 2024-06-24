@@ -8,7 +8,10 @@ public class TransactionDatas {
      * @param cno 卡号
      */
     public void removeTransactionByCno(ArrayList<String> cnos) {
-        
+        TransactionFiles transactionFiles = new TransactionFiles();
+        for(String cno:cnos){
+            transactionFiles.removeTransactionByCno(cno);
+        }
     }
     /**
      * 保存交易记录数据

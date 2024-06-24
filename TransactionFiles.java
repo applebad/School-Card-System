@@ -17,10 +17,14 @@ public class TransactionFiles {
         }
         for(File fl: files){
             TransactionFile transactionFile = new TransactionFile(fl.toString());
-            String cno = "";//TODO
+            String cno = "";
             cno = fl.toString().substring(0, fl.toString().lastIndexOf("."));
             transactionsMap.put(cno, transactionFile.getTransaction());
         }
+    }
+
+    public void removeTransactionByCno(String cno) {
+        transactionsMap.remove(cno);
     }
     
 }
