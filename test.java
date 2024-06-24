@@ -1,4 +1,7 @@
 import java.util.Comparator;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,9 +11,10 @@ import java.util.ArrayList;
  */
 public class test {
     public static void main(String[] args) {
-        System.out.println("test");
+        // System.out.println("test");
         // BinarySearchTest();
-        Fr();
+        // Fr();
+        UF();
     }
 
     /***
@@ -49,4 +53,14 @@ public class test {
             e.printStackTrace();
         }
     }
+    public static void UF(){
+        // UserFile uf = new UserFile();
+        // ArrayList<User> users = uf.acquire();
+        UserDatas userDatas = new UserDatas();
+        ArrayList<User> users = userDatas.getUsers();
+        for (User user:users){
+            System.out.println(""+user.getmobile());
+        }
+    }
+
 }

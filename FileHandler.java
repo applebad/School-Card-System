@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.io.File;
 public class FileHandler {
     /**
      * 数据项之间的分隔符
@@ -45,7 +45,12 @@ public class FileHandler {
         datas.clear();
         try{
             //缓冲流方式读取文件中的数据
-            reader = new BufferedReader(new FileReader(filename));
+            File file = new File(fileContent+FileSeparator+filename);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            FileReader fr = new FileReader(file);
+            reader = new BufferedReader(fr);
             String line = null;
             while((line = reader.readLine()) != null){
                 datas.add(line);//每条记录保存为一个字符串对象
