@@ -6,8 +6,8 @@ public class OperatorService extends UserService{
      * 显示所有卡信息
      */
     public void showCards(){
+        System.out.println("卡号   |   卡状态 |   卡余额");
         for(Card card : cards){
-            System.out.println("卡号   |   卡状态 |   卡余额");
             System.out.println(card.cno+" | "+card.cardCondition+" | "+card.balance);
         }
     }
@@ -76,6 +76,25 @@ public class OperatorService extends UserService{
         }else{
             System.out.println("卡号不存在!");
         }
+    }
+
+    /**
+     * 用户注销
+     */
+    public void logout(){
+        saveDatas();//保存数据
+        //清空全局变量/对象数据
+        UserDatas.clear();
+        CardDatas.clear();
+        TransactionDatas.clear();
+        curUserIndex = -1;
+    }
+    /**
+     * 用户退出
+     */
+    public void exit(){
+        saveDatas();
+        System.exit(0);
     }
 
     @Override

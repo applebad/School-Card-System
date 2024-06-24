@@ -63,6 +63,7 @@ public class UserService {
             System.out.println("用户密码错误!");
             return false;
         }
+        curUserIndex = index;
         return true;
     }
     /*

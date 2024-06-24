@@ -20,7 +20,7 @@ public class UserDatas {
         if(mobile==null) return -1;
         int index = -1;
         sortedUsers();//排序
-        binarySearch(0,users.size(),mobile);//二分查找
+        index = binarySearch(0,users.size(),mobile);//二分查找
         return index;
     }
     /**

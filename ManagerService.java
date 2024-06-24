@@ -115,4 +115,23 @@ public class ManagerService extends UserService{
         change = false;
         delete = false;
     }
+
+    /**
+     * 用户注销
+     */
+    public void logout(){
+        saveDatas();//保存数据
+        //清空全局变量/对象数据
+        UserDatas.clear();
+        CardDatas.clear();
+        TransactionDatas.clear();
+        curUserIndex = -1;
+    }
+    /**
+     * 用户退出
+     */
+    public void exit(){
+        saveDatas();
+        System.exit(0);
+    }
 }

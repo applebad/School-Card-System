@@ -69,10 +69,10 @@ public class CustomerService extends UserService{
     public void showCard() {
         if(getCardCondition()){
             Card xcard = null;
+            System.out.println("卡号   |   卡状态 |   卡余额");
             while (true) {
                 try{
                     xcard = cards.get(CardDatas.getCardIndex(users.get(curUserIndex).cno));
-                    System.out.println("卡号   |   卡状态 |   卡余额");
                     System.out.println(xcard.cno+" | "+xcard.cardCondition+" | "+xcard.balance);
                     break;
                 }
@@ -88,9 +88,35 @@ public class CustomerService extends UserService{
      * 显示卡消费记录
      */
     public void showTransaction() {
-        //TODO
+        System.out.println("消费时间  | 消费卡号 | 金额变动");
+        for(Transaction trans: transactions){
+            System.out.println(trans.transTime+" | "+trans.cno+" | "+trans.balance);
+        }
         
     }
- 
+
+/**
+     * 用户注销
+     */
+    public void logout(){
+        saveDatas();//保存数据
+        //清空全局变量/对象数据
+        UserDatas.clear();
+        CardDatas.clear();
+        TransactionDatas.clear();
+        curUserIndex = -1;
+    }
+    /**
+     * 用户退出
+     */
+    public void exit(){
+        saveDatas();
+        System.exit(0);
+    }
+
+    @Override
+    public void saveDatas(){
+        //TODO
+    }
     
 }
