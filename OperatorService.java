@@ -36,8 +36,8 @@ public class OperatorService extends UserService{
         }
 
         Card newCard = new Card(cno);
-        
         CardDatas.addCard(newCard);
+        change=true;//数据更改标识
     }
 
     /**
@@ -50,6 +50,7 @@ public class OperatorService extends UserService{
         if(CardIndex!=-1){
             try{
                 cards.get(CardDatas.getCardIndex(cno)).cardCondition = false;
+                change = true;
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -68,11 +69,25 @@ public class OperatorService extends UserService{
         if(CardIndex!=-1){
             try{
                 cards.get(CardDatas.getCardIndex(cno)).cardCondition = true;
+                change = true;
             }catch(Exception e){
                 e.printStackTrace();
             }
         }else{
             System.out.println("卡号不存在!");
         }
+    }
+
+    @Override
+    public void saveDatas(){
+        if(!change) return;
+        System.out.println("用户信息已经被修改,是否保存?(y/n)");
+        String ans = sc.nextLine();
+        if(ans.equals("y")){
+            userDatas.saveUsers();
+            cardDatas.saveUsers();
+        }
+        //恢复标记
+        change = false;
     }
 }

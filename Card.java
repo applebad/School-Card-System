@@ -4,7 +4,7 @@ public class Card {
      */
     String cno;
     /**
-     * '卡'状态
+     * '卡'状态 True = 激活
      */
     boolean cardCondition;
     /**

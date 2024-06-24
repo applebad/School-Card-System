@@ -65,7 +65,7 @@ public class UserService {
         }
         return true;
     }
-    /**
+    /*
      * 改密码
      */
     public boolean modifyPassword(){
@@ -105,7 +105,7 @@ public class UserService {
         change = true;//数据更改了
         return true;
     }
-    /***
+    /**
      * 用户注销
      */
     public void logout(){
@@ -116,14 +116,14 @@ public class UserService {
         TransactionDatas.clear();
         curUserIndex = -1;
     }
-    /***
+    /**
      * 用户退出
      */
     public void exit(){
         saveDatas();
         System.exit(0);
     }
-    /***
+    /**
      * 保存数据
      * 身份不一样操作不同 逻辑在子类中实现
      */
