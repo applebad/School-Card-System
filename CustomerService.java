@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 public class CustomerService extends UserService{
     
    
@@ -24,6 +27,7 @@ public class CustomerService extends UserService{
                     float rechargemoney = sc.nextFloat();
                     xcard.balance += rechargemoney;
                     System.out.println("充值成功！");
+                    transactions.get(xcard.cno).add(new Transaction(new Date(), xcard.cno, rechargemoney));
                     break;
                 }
                 catch(Exception e){
@@ -49,7 +53,7 @@ public class CustomerService extends UserService{
                     float consumemoney = sc.nextFloat();
                     xcard.balance -= consumemoney;
                     System.out.println("扣费成功");
-                    //TODO
+                    transactions.get(xcard.cno).add(new Transaction(new Date(), xcard.cno, consumemoney));
                     break;
                 }
                 catch(Exception e){
@@ -89,10 +93,12 @@ public class CustomerService extends UserService{
      */
     public void showTransaction() {//TODO
         System.out.println("消费时间  | 消费卡号 | 金额变动");
-        for(Transaction trans: transactions){
-            System.out.println(trans.transTime+" | "+trans.cno+" | "+trans.balance);
+        for(Map.Entry<String,ArrayList<Transaction>> map: transactions.entrySet()){
+            ArrayList<Transaction> transaction = map.getValue();
+            for(Transaction trans:transaction){
+                System.out.println(trans.transTime+" | "+trans.cno+" | "+trans.balance);
+            }
         }
-        
     }
 
 /**

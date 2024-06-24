@@ -25,7 +25,7 @@ public class TransactionDatas {
     /**
      * 获取交易记录
      * @return
-     */
+     */ 
     public static Map<String,ArrayList<Transaction>> getTransactions() {
         if(transactionMap==null){
             TransactionFiles transactionFiles = new TransactionFiles();//通过构造方法获取文件中的数据
@@ -37,7 +37,7 @@ public class TransactionDatas {
      * 清空交易记录
      */
     public static void clear() {
-        
+        transactionMap = null;
     }
     
 }
