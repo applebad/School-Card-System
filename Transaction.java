@@ -1,4 +1,4 @@
-import java.sql.Date;
+import java.util.Date;
 
 public class Transaction {
     /**
@@ -13,4 +13,9 @@ public class Transaction {
      * 变动金额
      */
     float balance;
+    public Transaction(Date transTime, String cno, float balance){
+        this.transTime = transTime;
+        this.cno = cno;
+        this.balance = balance;
+    }
 }

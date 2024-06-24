@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.io.File;
@@ -35,6 +36,10 @@ public class FileHandler {
         this.fileContent = fileContent;
         this.datas = new ArrayList<String>();
     }
+    /**
+     * 用于格式化金额
+     */
+    public DecimalFormat df = new DecimalFormat("#.00");
     
     /***
      * 从文件中读取数据
