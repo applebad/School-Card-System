@@ -87,8 +87,7 @@ public class CustomerService extends UserService{
      * 显示卡消费记录
      */
     public void showTransaction() {
-        
-
+        //TODO
         
     }
  

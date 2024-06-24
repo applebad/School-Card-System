@@ -18,10 +18,17 @@ public class TransactionDatas {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'saveTransaction'");
     }
+    /**
+     * 获取交易记录
+     * @return
+     */
     public static ArrayList<Transaction> getTransactions() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getTransactions'");
     }
+    /**
+     * 清空交易记录
+     */
     public static void clear() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'clear'");

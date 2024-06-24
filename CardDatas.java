@@ -59,6 +59,12 @@ public class CardDatas {
         int mid = (stat + end) / 2;
         if(cno.equals(cards.get(mid).cno)){
             return mid;
+        }else if(stat == end){
+            if(cno.equals(cards.get(mid).cno)){
+                return mid;
+            }else{
+                return -1;
+            }
         }else if(Integer.parseInt(cno) > Integer.parseInt(cards.get(mid).cno)){
             return getCardIndex(mid+1, end, cno);
         }else{

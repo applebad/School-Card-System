@@ -6,7 +6,10 @@ public class OperatorService extends UserService{
      * 显示所有卡信息
      */
     public void showCards(){
-        //TODO 
+        for(Card card : cards){
+            System.out.println("卡号   |   卡状态 |   卡余额");
+            System.out.println(card.cno+" | "+card.cardCondition+" | "+card.balance);
+        }
     }
 
     /**
@@ -41,26 +44,35 @@ public class OperatorService extends UserService{
      * 冻结卡
      */
     public void frozenCard() {
-        //TODO
+        System.out.println("输入卡号:");
+        String cno = sc.nextLine();
+        int CardIndex = CardDatas.getCardIndex(cno);
+        if(CardIndex!=-1){
+            try{
+                cards.get(CardDatas.getCardIndex(cno)).cardCondition = false;
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("卡号不存在!");
+        }
     }
 
     /**
      * 解冻卡
      */
     public void activateCard(){
-        //TODO
-    }
-    /**
-     * 注销
-     */
-    public void logout() {
-       //TODO
-    }
-
-    /**
-     * 退出该卡
-     */
-    public void exit() {
-        //TODO
+        System.out.println("输入卡号:");
+        String cno = sc.nextLine();
+        int CardIndex = CardDatas.getCardIndex(cno);
+        if(CardIndex!=-1){
+            try{
+                cards.get(CardDatas.getCardIndex(cno)).cardCondition = true;
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("卡号不存在!");
+        }
     }
 }
