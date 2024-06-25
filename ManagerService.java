@@ -57,8 +57,10 @@ public class ManagerService extends UserService{
             }
             System.out.println("用户["+mobile+"]不存在,是否重新输入(y/n):");
             sc.nextLine();String ans = sc.nextLine();
-            if(ans.equals("n")){
+            if(ans.equals("y")){
                 continue;
+            }else{
+                return;
             }
         }
         User user = users.get(index);
@@ -107,7 +109,7 @@ public class ManagerService extends UserService{
     @Override
     public void saveDatas(){
         if(!change) return;
-        System.out.println("用户信息已经被修改,是否保存?(y/n)");
+        System.out.println("用户信息已经被修改,是否保存?(y/n)");sc.nextLine();
         String ans = sc.nextLine();
         if(ans.equals("y")){
             userDatas.saveUsers();

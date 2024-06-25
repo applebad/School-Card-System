@@ -68,7 +68,7 @@ public class CardDatas {
         }else if(Integer.parseInt(cno) > Integer.parseInt(cards.get(mid).cno)){
             return getCardIndex(mid+1, end, cno);
         }else{
-            return getCardIndex(stat, mid-1, cno);
+            return getCardIndex(stat, mid, cno);
         }
     }
     protected static int getCardIndex(String cno){
