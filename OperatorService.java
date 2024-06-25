@@ -117,6 +117,7 @@ public class OperatorService extends UserService{
         if(ans.equals("y")){
             userDatas.saveUsers();
             cardDatas.saveCards();
+            
             transDatas.createCardTransaction(cards);
             transactions = TransactionDatas.getTransactions();//图
         }

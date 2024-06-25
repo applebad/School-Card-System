@@ -72,6 +72,7 @@ public class TransactionDatas {
         } 
         flag = false;
         for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){//有消费记录而无卡 则删除
+            flag = false;
             for(Card card : cards){
                 if(card.cno.equals(entry.getKey())){
                     flag = true;

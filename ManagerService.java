@@ -116,7 +116,9 @@ public class ManagerService extends UserService{
             if(delete){//删除用户,需要删除卡和交易记录
                 transDatas.removeTransactionByCno(removeCno);
                 cardDatas.saveCards();//保存卡号数据
+                
                 transDatas.createCardTransaction(cards);
+                transactions = TransactionDatas.getTransactions();//图
             }
         }
         //恢复标记
