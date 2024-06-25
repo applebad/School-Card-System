@@ -10,7 +10,6 @@ public class CustomerService extends UserService{
     @SuppressWarnings("static-access")
     public boolean getCardCondition(){
         if(users.get(curUserIndex).cno.equals("")) {
-            System.out.println("没卡,开卡");
             return false;
         }
         return cards.get(CardDatas.getCardIndex(users.get(curUserIndex).cno)).cardCondition;
@@ -44,7 +43,7 @@ public class CustomerService extends UserService{
                 }    
             }
         }else{
-            System.out.println("该卡被冻结！");
+            System.out.println("该卡不存在或被冻结！");
         }
         
         
@@ -79,7 +78,7 @@ public class CustomerService extends UserService{
                 }    
             }
         }else{
-            System.out.println("该卡被冻结！");
+            System.out.println("该卡不存在或被冻结！");
         }
     }
     /**
@@ -100,7 +99,7 @@ public class CustomerService extends UserService{
                 }
             }
         }else{
-            System.out.println("该卡被冻结！");
+            System.out.println("该卡不存在或被冻结！");
         }
     }
     /**
