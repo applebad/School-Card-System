@@ -109,8 +109,8 @@ public class ManagerService extends UserService{
     @Override
     public void saveDatas(){
         if(!change) return;
-        System.out.println("用户信息已经被修改,是否保存?(y/n)");sc.nextLine();
-        String ans = sc.nextLine();
+        System.out.println("用户信息已经被修改,是否保存?(y/n)");
+        String ans = sc.nextLine();sc.nextLine();
         if(ans.equals("y")){
             userDatas.saveUsers();
             if(delete){//删除用户,需要删除卡和交易记录
