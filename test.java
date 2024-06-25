@@ -15,6 +15,8 @@ public class test {
         // BinarySearchTest();
         // Fr();
         UF();
+        String test = "stas";
+        Integer.parseInt(test);
     }
 
     /***

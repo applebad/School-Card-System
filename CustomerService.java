@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
 public class CustomerService extends UserService{
     
    
@@ -10,6 +9,10 @@ public class CustomerService extends UserService{
     */
     @SuppressWarnings("static-access")
     public boolean getCardCondition(){
+        if(users.get(curUserIndex).cno.equals("")) {
+            System.out.println("没卡,开卡");
+            return false;
+        }
         return cards.get(CardDatas.getCardIndex(users.get(curUserIndex).cno)).cardCondition;
     } 
 
@@ -27,10 +30,16 @@ public class CustomerService extends UserService{
                     float rechargemoney = sc.nextFloat();
                     xcard.balance += rechargemoney;
                     System.out.println("充值成功！");
+                    
+                    if(transactions.get(xcard.cno)==null){//判空 则实例化一个列表
+                        transactions.put(xcard.cno, new ArrayList<Transaction>());
+                    }
                     transactions.get(xcard.cno).add(new Transaction(new Date(), xcard.cno, rechargemoney));
+                    change = true;
                     break;
                 }
                 catch(Exception e){
+                    e.printStackTrace();
                     System.out.println("发生错误，请重新输入！");
                 }    
             }
@@ -52,8 +61,17 @@ public class CustomerService extends UserService{
                     System.out.println("您本次消费的金额是：");
                     float consumemoney = sc.nextFloat();
                     xcard.balance -= consumemoney;
+                    if(xcard.balance < 0){
+                        System.out.println("余额不足!请及时充值");
+                        return;
+                    }
                     System.out.println("扣费成功");
-                    transactions.get(xcard.cno).add(new Transaction(new Date(), xcard.cno, consumemoney));
+                    
+                    if(transactions.get(xcard.cno)==null){//判空 则实例化一个列表
+                        transactions.put(xcard.cno, new ArrayList<Transaction>());
+                    }
+                    transactions.get(xcard.cno).add(new Transaction(new Date(), xcard.cno, -consumemoney));
+                    change = true;
                     break;
                 }
                 catch(Exception e){
@@ -63,9 +81,6 @@ public class CustomerService extends UserService{
         }else{
             System.out.println("该卡被冻结！");
         }
-
-
-       
     }
     /**
      * 显示卡信息
@@ -73,11 +88,11 @@ public class CustomerService extends UserService{
     public void showCard() {
         if(getCardCondition()){
             Card xcard = null;
-            System.out.println("卡号   |   卡状态 |   卡余额");
+            System.out.printf("%-26s|%-20s|%-15s\n","卡号","卡状态","卡余额");
             while (true) {
                 try{
                     xcard = cards.get(CardDatas.getCardIndex(users.get(curUserIndex).cno));
-                    System.out.println(xcard.cno+" | "+xcard.cardCondition+" | "+xcard.balance);
+                    System.out.printf("%-26s|%-20s|%-15s\n",xcard.cno,xcard.cardCondition,df.format(xcard.balance));
                     break;
                 }
                 catch(Exception e){
@@ -91,13 +106,12 @@ public class CustomerService extends UserService{
     /**
      * 显示卡消费记录
      */
-    public void showTransaction() {//TODO
-        System.out.println("消费时间  | 消费卡号 | 金额变动");
-        for(Map.Entry<String,ArrayList<Transaction>> map: transactions.entrySet()){
-            ArrayList<Transaction> transaction = map.getValue();
-            for(Transaction trans:transaction){
-                System.out.println(trans.transTime+" | "+trans.cno+" | "+trans.balance);
-            }
+    public void showTransaction() {
+        System.out.printf("%-20s|%-20s|%-15s\n","消费时间","消费卡号","金额变动");
+        ArrayList<Transaction> transaction = transactions.get(users.get(curUserIndex).cno);
+        if(transaction==null) return;
+        for(Transaction trans : transactions.get(users.get(curUserIndex).cno)){
+            System.out.printf("%-20s|%-20s|%-15s\n",sdf.format(trans.transTime),trans.cno,df.format(trans.balance));
         }
     }
 
@@ -122,7 +136,11 @@ public class CustomerService extends UserService{
 
     @Override
     public void saveDatas(){
-        //TODO
+        if(change){
+            userDatas.saveUsers();
+            cardDatas.saveCards();
+            transDatas.saveTransaction();
+        }
     }
     
 }

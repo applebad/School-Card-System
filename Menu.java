@@ -27,6 +27,7 @@ public class Menu {
         System.out.println("\t5. 解挂");
         System.out.println("\t6. 注销");
         System.out.println("\t7. 退出");
+        System.out.println("\t8. 查看所有卡的消费记录");
         System.out.println("\n\t 请选择您的操作：");
     }
     /***

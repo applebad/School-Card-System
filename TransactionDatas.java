@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -20,7 +21,7 @@ public class TransactionDatas {
      */
     public void saveTransaction() {
         TransactionFiles transactionFiles = new TransactionFiles();
-        transactionFiles.saveTransactionMap((Map<String, ArrayList<Transaction>>) transactionMap);
+        transactionFiles.saveTransactionMap((Map<String, ArrayList<Transaction>>) transactionMap);//保存数据到本地
     }
     /**
      * 获取交易记录
@@ -31,6 +32,10 @@ public class TransactionDatas {
             TransactionFiles transactionFiles = new TransactionFiles();//通过构造方法获取文件中的数据
             transactionMap = transactionFiles.getTransactionMap();//存到内存
         }
+        for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){
+            TransactionFile transactionFile = new TransactionFile(entry.getKey()+".dat");
+            transactionMap.put(entry.getKey(), transactionFile.acquire());
+        }
         return transactionMap;
     }
     /**
@@ -39,5 +44,43 @@ public class TransactionDatas {
     public static void clear() {
         transactionMap = null;
     }
-    
+
+    /**
+     * 卡存在 则生成对应实例和文件 不存在 则删除
+     */
+    public void createCardTransaction(ArrayList<Card> cards){
+        TransactionFiles transactionFiles = new TransactionFiles();
+        if(transactionMap==null){
+            transactionMap = new HashMap<String,ArrayList<Transaction>>();
+            for(Card card : cards){
+                transactionMap.put(card.cno, null);
+                transactionFiles.mkdir(card.cno);
+            }
+            return;
+        }
+        boolean flag = false;
+        for(Card card : cards){
+            flag = false;
+            for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){
+                if(card.cno.equals(entry.getKey())){
+                    flag = true;
+                }
+            }
+            if(!flag){
+                transactionMap.put(card.cno, null);
+            }
+        } 
+        flag = false;
+        for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){
+            for(Card card : cards){
+                if(card.cno.equals(entry.getKey())){
+                    flag = true;
+                }
+            }
+            if(!flag){
+                transactionMap.remove(entry.getKey());
+            }
+        }
+        saveTransaction();
+    }
 }

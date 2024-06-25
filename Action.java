@@ -107,6 +107,9 @@ public class Action {
                     operatorService.exit();
                     flag = true;
                     break;
+                case 8:
+                    operatorService.showTransaction();
+                    break;
                 default:
                     System.out.println("错误的输入!");
                     break;

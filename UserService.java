@@ -39,6 +39,7 @@ public class UserService {
     public void getDatas(){
         users = UserDatas.getUsers();
         cards = CardDatas.getCards();
+        transDatas.createCardTransaction(cards);
         transactions = TransactionDatas.getTransactions();//图
     }
     public int getCurUserIndex(){

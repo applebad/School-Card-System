@@ -21,7 +21,7 @@ public class CardDatas {
     /**
      *  cards对象数据保存到文件
     */
-    public void saveUsers() {
+    public void saveCards() {
         CardFile cardFile = new CardFile();
         cardFile.save(cards);
     }
@@ -39,7 +39,7 @@ public class CardDatas {
     /**
      * 按序插入
      */
-    public static void addCard(Card card){
+    public void addCard(Card card){
         cards.add(card);
         sortCards();
     }
@@ -72,7 +72,9 @@ public class CardDatas {
         }
     }
     protected static int getCardIndex(String cno){
-        return getCardIndex(0, cards.size(), cno);
+        sortCards();
+        if(cards.size()==0) return -1;
+        return getCardIndex(0, cards.size()-1, cno);
     }
 
     /**
@@ -80,17 +82,29 @@ public class CardDatas {
      */
     protected static void sortCards(){
         boolean flag = true;
-        for(int i = 0; i < cards.size(); i++){
-            for(int j = 0; j < cards.size() - i; i++){
-                if(Integer.parseInt(cards.get(i).cno)>Integer.parseInt(cards.get(j).cno)){
-                    Card tmp = cards.get(i);
-                    cards.set(i, cards.get(j));
+        for(int i = 0; i < cards.size()-1; i++){
+            for(int j = 0; j < cards.size() - i - 1; j++){
+                if(cards.get(j).cno.length() > cards.get(j + 1).cno.length()){
+                    Card tmp = cards.get(j);
+                    cards.set(j, cards.get(j+1));
                     cards.set(j, tmp);
                     flag = false;
+                }else if(cards.get(j).cno.length() == cards.get(j + 1).cno.length()){
+                    for(int k = 0; k < cards.get(j).cno.length(); k++){
+                        if(cards.get(j).cno.charAt(k) > cards.get(j + 1).cno.charAt(k)){
+                            Card tmp = cards.get(j);
+                            cards.set(j, cards.get(j+1));
+                            cards.set(j+1, tmp);
+                            flag = false;
+                            break;
+                        }
+                    }
                 }
             }
             if(flag){
                 break;
+            }else{
+                flag = true;
             }
         }
     }

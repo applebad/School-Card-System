@@ -1,6 +1,5 @@
 //对users数据进行查找、添加、修改、删除等操作
 
-import java.util.Comparator;
 import java.util.ArrayList;
 
 public class UserDatas {
@@ -19,17 +18,50 @@ public class UserDatas {
         if(users==null) return -1;
         if(mobile==null) return -1;
         int index = -1;
+        if(mobile.equals("admin")){//管理员通道(无法排序导致)
+            for(int i = 0; i < users.size(); i++){
+                if(users.get(i).mobile.equals(mobile)){
+                    return i;
+                }
+            }
+        }
         sortedUsers();//排序
-        index = binarySearch(0,users.size(),mobile);//二分查找
+        index = binarySearch(0,users.size()-1,mobile);//二分查找
         return index;
     }
     /**
      * 排序算法
      * 根据mobile进行一次排序(升序)
      */
-    private void sortedUsers(){//
-        // Collections.sort(users,Comparator.comparingInt((User::getmobileToInt)));
-        users.sort(Comparator.comparingInt(User::getmobileToInt));
+    private void sortedUsers(){//插入排序
+        if(users.size()<=1) return;
+        int base = 1;
+        while(base < users.size()){
+            for(int i = base; i > 0; i--){
+                if(users.get(i).mobile.length() < users.get(i-1).mobile.length()){
+                    swap(i, i-1);
+                }else if(users.get(i).mobile.length() == users.get(i-1).mobile.length()){
+                    String mobile1 = users.get(i).mobile, mobile2 = users.get(i-1).mobile;
+                    for(int j = 0; j < mobile1.length(); j++){
+                        if(mobile1.charAt(j) > mobile2.charAt(i)){
+                            swap(i, i-1);
+                        }
+                    }
+                }
+            }
+            base++;
+        }
+        // users.sort(Comparator.comparingInt(User::getmobileToInt));
+    }
+    /**
+     * 交换
+     * @param i
+     * @param j
+     */
+    private void swap(int i, int j){
+        User tmp = users.get(i);
+        users.set(i, users.get(j));
+        users.set(j, tmp);
     }
     /**
      * 二分查找算法
@@ -39,12 +71,22 @@ public class UserDatas {
      * @return index 目标指针
      */
     private int binarySearch(int stat, int end, String key){
-        int index = (end+stat)/2;
+        int index = (end + stat) / 2;
+        if(stat==end && !users.get(index).mobile.equals(key)) return -1;
         if(users.get(index).getmobile().equals(key)){
             return index;
         }
-        if(users.get(index).getmobileToInt() > Integer.parseInt(key)){
+        if(users.get(index).mobile.length() < key.length()){
             return binarySearch(index + 1, end, key);
+        }else if(users.get(index).mobile.length() == key.length()){
+            for(int i = 0; i < key.length(); i++){
+                if(users.get(index).mobile.charAt(i) < key.charAt(i)){
+                    return binarySearch(index + 1, end, key);
+                }else if(users.get(index).mobile.charAt(i) > key.charAt(i)){
+                    return binarySearch(stat, index, key);
+                }
+            }
+            return index;
         }else{
             return binarySearch(stat, index, key);
         }

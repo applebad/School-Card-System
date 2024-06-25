@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class OperatorService extends UserService{
@@ -6,9 +8,9 @@ public class OperatorService extends UserService{
      * 显示所有卡信息
      */
     public void showCards(){
-        System.out.println("卡号   |   卡状态 |   卡余额");
+        System.out.printf("%-18s|%-17s|%-17s|%-17s\n","卡号","卡状态","卡余额","卡持有人");
         for(Card card : cards){
-            System.out.println(card.cno+" | "+card.cardCondition+" | "+card.balance);
+            System.out.printf("%-20s|%-20s|%-20s|%-20s\n",card.cno,card.cardCondition,card.balance,card.mobile);
         }
     }
 
@@ -28,16 +30,26 @@ public class OperatorService extends UserService{
                     flag = false;
                     break;
                 }
+            }else {
+                flag = false;
+                break;
             }
         }
         if(flag){
             System.out.println("退出开卡业务!");
             return;
         }
-
-        Card newCard = new Card(cno);
-        CardDatas.addCard(newCard);
-        change=true;//数据更改标识
+        System.out.println("输入持卡人账户:");
+        String mobile = sc.nextLine();
+        int createCardUserIndex = userDatas.findUser(mobile);
+        if(createCardUserIndex > 0){//账户存在
+            Card newCard = new Card(cno,true,0,mobile);
+            cardDatas.addCard(newCard);
+            users.get(createCardUserIndex).cno = cno;
+            change=true;//数据更改标识
+        }else{
+            System.out.println("账户不存在！");
+        }
     }
 
     /**
@@ -104,9 +116,23 @@ public class OperatorService extends UserService{
         String ans = sc.nextLine();
         if(ans.equals("y")){
             userDatas.saveUsers();
-            cardDatas.saveUsers();
+            cardDatas.saveCards();
         }
         //恢复标记
         change = false;
+    }
+
+     /**
+     * 显示卡消费记录
+     */
+    public void showTransaction() {
+        System.out.printf("%-26s|%-20s|%-10s\n","消费时间","消费卡号","金额变动");
+        if(transactions==null) return;
+        for(Map.Entry<String,ArrayList<Transaction>> map: transactions.entrySet()){
+            ArrayList<Transaction> transaction = map.getValue();
+            for(Transaction trans:transaction){
+                System.out.printf("%-30s|%-24s|%-10s\n",sdf.format(trans.transTime),trans.cno,df.format(trans.balance));
+            }
+        }
     }
 }

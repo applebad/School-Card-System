@@ -52,7 +52,7 @@ public class TransactionFile extends FileHandler{
      */
     public void save(ArrayList<Transaction> transactions){
         if(transactions.isEmpty()) return;
-        datas.clear();
+        // datas.clear();
         for(int i = 0; i < transactions.size(); i++){
             datas.add(dataToString(transactions.get(i)));
         }

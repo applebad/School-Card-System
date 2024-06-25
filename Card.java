@@ -11,7 +11,11 @@ public class Card {
      * 余额
      */
     float balance;
-    
+
+    /**
+     * 持卡人账户
+     */
+    String mobile;
     public Card(){}
 
     public Card(String cno){
@@ -30,5 +34,12 @@ public class Card {
         this.cno = cno;
         this.cardCondition = cardCondition;
         this.balance = balance;
+    }
+
+    public Card(String cno, boolean cardCondition, float balance, String mobile){
+        this.cno = cno;
+        this.cardCondition = cardCondition;
+        this.balance = balance;
+        this.mobile = mobile;
     }
 }

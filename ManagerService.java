@@ -45,17 +45,21 @@ public class ManagerService extends UserService{
         String mobile;
         int index = -1;
         while(true){
-            System.out.println("手机号(11位):");
+            System.out.println("手机号:");
             mobile = sc.next();
-            if(mobile.length()!=11) {
-                System.out.println("手机号位数错误");
-                continue;
-            }
+            // if(mobile.length()!=11) {
+            //     System.out.println("手机号位数错误");
+            //     continue;
+            // }
             index = userDatas.findUser(mobile);
             if(index >= 0){
                 break;
             }
-            System.out.println("用户["+mobile+"]不存在,请重新输入");
+            System.out.println("用户["+mobile+"]不存在,是否重新输入(y/n):");
+            sc.nextLine();String ans = sc.nextLine();
+            if(ans.equals("n")){
+                continue;
+            }
         }
         User user = users.get(index);
         if(user.mobile.equals(users.get(curUserIndex).mobile)){
@@ -79,7 +83,7 @@ public class ManagerService extends UserService{
      * 显示所有用户
      */
     public void showUsers(){
-        System.out.println("\n手机号\t\t密码\t\t用户名\t\t身份\\t\\t卡号");
+        System.out.printf("\n%-10s\t\t%-10s\t\t%-10s\t\t%-10s\t\t%-10s\n","手机号","密码","用户名","身份","卡号");
         for(int i = 0; i < users.size(); i++){
             User user = users.get(i);
             String roleName;
@@ -97,7 +101,7 @@ public class ManagerService extends UserService{
                     roleName = "卡用户";
                     break;
             }
-            System.out.println(user.mobile+"\t\t"+user.password+"\t\t"+user.userName+"\t\t"+roleName+"\t\t"+user.cno);
+            System.out.printf("%-10s\t\t%-10s\t\t%-10s\t\t%-10s\t\t%-10s\n",user.mobile,user.password,user.userName,roleName,user.cno);
         }
     }
     @Override
@@ -109,7 +113,7 @@ public class ManagerService extends UserService{
             userDatas.saveUsers();
             if(delete){//删除用户,需要删除卡和交易记录
                 transDatas.removeTransactionByCno(removeCno);
-                cardDatas.saveUsers();//保存卡号数据
+                cardDatas.saveCards();//保存卡号数据
                 transDatas.saveTransaction();//保存交易记录
             }
         }

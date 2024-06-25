@@ -27,7 +27,7 @@ public class CardFile extends FileHandler {
     private Card dataFromString(String string) {
         Card card = null;
         String[] item = string.split(separator);
-        card = new Card(item[0],Boolean.parseBoolean(item[1]));
+        card = new Card(item[0], Boolean.parseBoolean(item[1]), Float.parseFloat(item[2]), item[3]);
         return card;
     }
     public void save(ArrayList<Card> cards){
@@ -36,12 +36,13 @@ public class CardFile extends FileHandler {
         for(int i = 0; i < cards.size(); i++){
             datas.add(dataToString(cards.get(i)));
         }
+        write();
     }
     private String dataToString(Card card){
         String line = null;
         if(card!=null){
             //使用sparator符号连接数据项
-            line =card.cno+separator+card.cardCondition+separator+card.balance+'\n';
+            line =card.cno+separator+card.cardCondition+separator+card.balance+separator+card.mobile+'\n';
         }
         return line;
     }

@@ -31,8 +31,13 @@ public class User{
      * 获取账号 类型int
      * @return int
      */
-    public int getmobileToInt(){
-        return Integer.parseInt(mobile);
+    public Integer getmobileToInt(){
+        try{   
+            return Integer.parseInt(mobile);
+        }catch(Exception e){
+            return 0;
+        }
+        
     }
     /**
      * 获取账号
