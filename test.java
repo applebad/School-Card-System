@@ -15,8 +15,18 @@ public class test {
         // BinarySearchTest();
         // Fr();
         UF();
-        String test = "stas";
-        Integer.parseInt(test);
+        MyTool mTool  = new MyTool<>();
+        ArrayList<Integer> input = new ArrayList<>();
+        input.add(9);
+        input.add(4);
+        input.add(7);
+        input.add(10);
+        input.add(557);
+        input.add(0);
+        mTool.sortArrayList(input);
+        for(int i : input){
+            System.out.println(i);
+        }
     }
 
     /***
