@@ -60,11 +60,11 @@ public class CustomerService extends UserService{
                     xcard = cards.get(CardDatas.getCardIndex(users.get(curUserIndex).cno));
                     System.out.println("您本次消费的金额是：");
                     float consumemoney = sc.nextFloat();
-                    xcard.balance -= consumemoney;
-                    if(xcard.balance < 0){
+                    if(xcard.balance-consumemoney < 0){
                         System.out.println("余额不足!请及时充值");
                         return;
                     }
+                    xcard.balance -= consumemoney;
                     System.out.println("扣费成功");
                     
                     if(transactions.get(xcard.cno)==null){//判空 则实例化一个列表
