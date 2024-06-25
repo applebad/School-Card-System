@@ -23,7 +23,7 @@ public class OperatorService extends UserService{
         while(true){
             System.out.println("输入卡号:");
             cno = sc.nextLine();
-            if(CardDatas.getCardIndex(cno) > 0){//存在
+            if(CardDatas.getCardIndex(cno) >= 0){//存在
                 System.out.println("卡号存在!是否重新输入(y/n):");
                 String ans = sc.next();
                 if(ans.equals("n")){
@@ -42,7 +42,7 @@ public class OperatorService extends UserService{
         System.out.println("输入持卡人账户:");
         String mobile = sc.nextLine();
         int createCardUserIndex = userDatas.findUser(mobile);
-        if(createCardUserIndex > 0){//账户存在
+        if(createCardUserIndex >= 0){//账户存在
             Card newCard = new Card(cno,true,0,mobile);
             cardDatas.addCard(newCard);
             users.get(createCardUserIndex).cno = cno;
@@ -117,6 +117,8 @@ public class OperatorService extends UserService{
         if(ans.equals("y")){
             userDatas.saveUsers();
             cardDatas.saveCards();
+            transDatas.createCardTransaction(cards);
+            transactions = TransactionDatas.getTransactions();//图
         }
         //恢复标记
         change = false;

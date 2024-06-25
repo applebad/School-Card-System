@@ -19,7 +19,7 @@ public class TransactionDatas {
     /**
      * 保存交易记录数据
      */
-    public void saveTransaction() {
+    public void saveTransaction(){
         TransactionFiles transactionFiles = new TransactionFiles();
         transactionFiles.saveTransactionMap((Map<String, ArrayList<Transaction>>) transactionMap);//保存数据到本地
     }
@@ -50,7 +50,7 @@ public class TransactionDatas {
      */
     public void createCardTransaction(ArrayList<Card> cards){
         TransactionFiles transactionFiles = new TransactionFiles();
-        if(transactionMap==null){
+        if(transactionMap==null){//不存在则生成
             transactionMap = new HashMap<String,ArrayList<Transaction>>();
             for(Card card : cards){
                 transactionMap.put(card.cno, null);
@@ -59,7 +59,7 @@ public class TransactionDatas {
             return;
         }
         boolean flag = false;
-        for(Card card : cards){
+        for(Card card : cards){//卡存在而无消费 则生成
             flag = false;
             for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){
                 if(card.cno.equals(entry.getKey())){
@@ -71,7 +71,7 @@ public class TransactionDatas {
             }
         } 
         flag = false;
-        for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){
+        for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){//有消费记录而无卡 则删除
             for(Card card : cards){
                 if(card.cno.equals(entry.getKey())){
                     flag = true;
@@ -79,6 +79,7 @@ public class TransactionDatas {
             }
             if(!flag){
                 transactionMap.remove(entry.getKey());
+                transactionFiles.removeTransactionByCno(entry.getKey());
             }
         }
         saveTransaction();

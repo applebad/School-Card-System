@@ -82,12 +82,12 @@ public class CardDatas {
      */
     protected static void sortCards(){
         boolean flag = true;
-        for(int i = 0; i < cards.size()-1; i++){
+        for(int i = 0; i < cards.size() - 1; i++){
             for(int j = 0; j < cards.size() - i - 1; j++){
                 if(cards.get(j).cno.length() > cards.get(j + 1).cno.length()){
-                    Card tmp = cards.get(j);
+                    Card tmp = cards.get(j); 
                     cards.set(j, cards.get(j+1));
-                    cards.set(j, tmp);
+                    cards.set(j+1, tmp);
                     flag = false;
                 }else if(cards.get(j).cno.length() == cards.get(j + 1).cno.length()){
                     for(int k = 0; k < cards.get(j).cno.length(); k++){

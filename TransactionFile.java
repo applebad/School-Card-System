@@ -51,7 +51,7 @@ public class TransactionFile extends FileHandler{
      * @param transactions 消费记录集
      */
     public void save(ArrayList<Transaction> transactions){
-        if(transactions.isEmpty()) return;
+        if(transactions==null || transactions.isEmpty()) return;
         // datas.clear();
         for(int i = 0; i < transactions.size(); i++){
             datas.add(dataToString(transactions.get(i)));
