@@ -45,6 +45,7 @@ public class ManagerService extends UserService{
         String mobile;
         int index = -1;
         while(true){
+            String curUserMobile = users.get(curUserIndex).mobile;//排序会丢失当前用户指针
             System.out.println("手机号:");
             mobile = sc.next();sc.nextLine();
             // if(mobile.length()!=11) {
@@ -52,6 +53,7 @@ public class ManagerService extends UserService{
             //     continue;
             // }
             index = userDatas.findUser(mobile);
+            curUserIndex = userDatas.findUser(curUserMobile);//重置当前管理员用户的索引
             if(index >= 0){
                 break;
             }
@@ -65,7 +67,7 @@ public class ManagerService extends UserService{
         }
         User user = users.get(index);
         if(user.mobile.equals(users.get(curUserIndex).mobile)){
-            System.out.println("不能删除当前用户!");
+            System.out.println("不能删除当前正在使用的用户!");
             return;
         }
         if(users.get(index).role==2){
