@@ -49,40 +49,44 @@ public class TransactionDatas {
      * 卡存在 则生成对应实例和文件 不存在 则删除
      */
     public void createCardTransaction(ArrayList<Card> cards){
-        TransactionFiles transactionFiles = new TransactionFiles();
-        if(transactionMap==null){//不存在则生成
-            transactionMap = new HashMap<String,ArrayList<Transaction>>();
-            for(Card card : cards){
-                transactionMap.put(card.cno, null);
-                transactionFiles.mkdir(card.cno);
+        try{
+            TransactionFiles transactionFiles = new TransactionFiles();
+            if(transactionMap==null){//不存在则生成
+                transactionMap = new HashMap<String,ArrayList<Transaction>>();
+                for(Card card : cards){
+                    transactionMap.put(card.cno, null);
+                    transactionFiles.mkdir(card.cno);
+                }
+                return;
             }
-            return;
-        }
-        boolean flag = false;
-        for(Card card : cards){//卡存在而无消费 则生成
+            boolean flag = false;
+            for(Card card : cards){//卡存在而无消费 则生成
+                flag = false;
+                for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){
+                    if(card.cno.equals(entry.getKey())){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag){
+                    transactionMap.put(card.cno, null);
+                }
+            } 
             flag = false;
-            for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){
-                if(card.cno.equals(entry.getKey())){
-                    flag = true;
+            for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){//有消费记录而无卡 则删除
+                flag = false;
+                for(Card card : cards){
+                    if(card.cno.equals(entry.getKey())){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag){
+                    transactionMap.remove(entry.getKey());
+                    transactionFiles.removeTransactionByCno(entry.getKey());
                 }
             }
-            if(!flag){
-                transactionMap.put(card.cno, null);
-            }
-        } 
-        flag = false;
-        for(Map.Entry<String,ArrayList<Transaction>> entry : transactionMap.entrySet()){//有消费记录而无卡 则删除
-            flag = false;
-            for(Card card : cards){
-                if(card.cno.equals(entry.getKey())){
-                    flag = true;
-                }
-            }
-            if(!flag){
-                transactionMap.remove(entry.getKey());
-                transactionFiles.removeTransactionByCno(entry.getKey());
-            }
-        }
-        saveTransaction();
+            saveTransaction();
+        }catch(Exception e){}
     }
 }

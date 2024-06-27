@@ -27,6 +27,10 @@ public class CustomerService extends UserService{
                     xcard = cards.get(CardDatas.getCardIndex(users.get(curUserIndex).cno));
                     System.out.println("输入充值金额：");
                     float rechargemoney = sc.nextFloat();
+                    if(rechargemoney<=0){
+                        System.out.println("非法的充值金额!");
+                        return;
+                    }
                     xcard.balance += rechargemoney;
                     System.out.println("充值成功！");
                     
@@ -59,7 +63,10 @@ public class CustomerService extends UserService{
                     xcard = cards.get(CardDatas.getCardIndex(users.get(curUserIndex).cno));
                     System.out.println("您本次消费的金额是：");
                     float consumemoney = sc.nextFloat();
-                    if(xcard.balance-consumemoney < 0){
+                    if(consumemoney<=0){
+                        System.out.println("非法的消费金额!");
+                        return;
+                    }else if(xcard.balance-consumemoney < 0){
                         System.out.println("余额不足!请及时充值");
                         return;
                     }
